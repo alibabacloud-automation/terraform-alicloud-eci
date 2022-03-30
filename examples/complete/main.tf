@@ -1,10 +1,7 @@
 
 data "alicloud_eci_zones" "default" {}
 
-resource "alicloud_resource_manager_resource_group" "resource_group" {
-  resource_group_name = "tf-test-eci"
-  display_name        = "tf-test-eci"
-}
+data "alicloud_resource_manager_resource_groups" "default" {}
 
 module "vpc" {
   source             = "alibaba/vpc/alicloud"
@@ -33,7 +30,7 @@ module "example" {
   security_group_id  = alicloud_security_group.security_group.id
   vswitch_id         = module.vpc.this_vswitch_ids[0]
   eip_instance_id    = alicloud_eip_address.eip_address.id
-  resource_group_id  = alicloud_resource_manager_resource_group.resource_group.id
+  resource_group_id  = data.alicloud_resource_manager_resource_groups.default.groups.0.id
   zone_id            = data.alicloud_eci_zones.default.zones.0.zone_ids.1
   #alicloud_eci_virtual_node
   virtual_node_name     = "tf-name"
