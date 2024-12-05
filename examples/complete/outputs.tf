@@ -1,7 +1,7 @@
 
 output "vpc_id" {
   description = "The id of vpc."
-  value       = module.vpc.this_vpc_id
+  value       = alicloud_vpc.default.id
 }
 
 output "security_group_id" {
