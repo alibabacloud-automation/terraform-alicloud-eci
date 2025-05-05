@@ -1,15 +1,7 @@
-
-variable "images" {
-  description = "The images to be cached. The image name must be versioned."
-  type        = list(string)
-  default     = ["registry-vpc.cn-beijing.aliyuncs.com/eci_open/nginx:alpine"]
-}
-
-# alicloud_eci_virtual_node
-variable "kube_config" {
-  description = "The kube config for the k8s cluster. It needs to be connected after Base64 encoding."
+variable "name" {
+  description = "The name of the resources."
   type        = string
-  default     = "kube config"
+  default     = "tf-example"
 }
 
 variable "taints" {
@@ -20,13 +12,6 @@ variable "taints" {
     key    = "Tf1"
     value  = "Test1"
   }
-}
-
-#alicloud_eci_container_group
-variable "container_image" {
-  description = "The image of the container."
-  type        = string
-  default     = "registry-vpc.cn-beijing.aliyuncs.com/eci_open/nginx:alpine"
 }
 
 variable "cpu" {
@@ -96,12 +81,6 @@ variable "init_container_name" {
   description = "The name of the init container."
   type        = string
   default     = "init-busybox"
-}
-
-variable "init_container_image" {
-  description = "The image of the container."
-  type        = string
-  default     = "registry-vpc.cn-beijing.aliyuncs.com/eci_open/busybox:1.30"
 }
 
 variable "init_container_image_pull_policy" {
