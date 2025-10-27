@@ -1,5 +1,5 @@
 provider "alicloud" {
-  region = "eu-central-1"
+  region = "cn-shanghai"
 }
 
 # VPC & VSwitch
@@ -19,7 +19,7 @@ resource "alicloud_vswitch" "default1" {
   count        = 1
   vswitch_name = format("${var.name}_%d", count.index + 1)
   cidr_block   = format("10.4.%d.0/24", count.index + 1)
-  zone_id      = data.alicloud_eci_zones.default.zones[0].zone_ids[1]
+  zone_id      = data.alicloud_eci_zones.default.zones[0].zone_ids[0]
   vpc_id       = alicloud_vpc.default.id
 }
 
